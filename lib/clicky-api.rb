@@ -47,9 +47,10 @@ class ClickyAPI
   end
   
   ## get_params returns the hash of params set by #set_params!
-  ## using Hash#merge to prevent shared structure
+  ## it returns the hash directly, so make a copy if you want to avoid
+  ## affecting other nearby ClickyAPI calls.
   def self.get_params
-    {}.merge(@@set_params||{})
+    @@set_params
   end
   
   ## the 'stats' method is used to obtain results.  I wanted to call it

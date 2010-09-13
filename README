@@ -1,5 +1,32 @@
 Clicky-api is a Ruby Gem which interfaces with version 4 of the Clicky web 
 analytics API, documented at http://getclicky.com/help/api.
 
+Usage:
+
+ClickyAPI.set_params!(params={})
+
+  Sets the given parameters persistently, in a class variable (so the 
+  settings are applied globally).  Setting the Clicky site_id and sitekey 
+  here is a good idea.
+  
+ClickyAPI.get_params
+
+  Returns the current hash of persistent params set by #set_params!.
+  This hash may be manipulated directly, e.g. to delete keys; if you 
+  need to alter it without affecting ClickyAPI everywhere, make a copy.
+  
+ClickyAPI.load_config_file!(file=nil)
+
+  Loads the given YAML config file and passes its keys and values to 
+  #set_params!.  If no file is specified and you're using Rails, 
+  #load_config_file! will use the contents of "config/clicky-api.yml".
+
+ClickyAPI.stats(params={})
+
+  Queries the Clicky server with the given params, merging them with 
+  any parameters set with #set_params!.  Returns a Ruby hash representation 
+  of the response.
+
+
 
 This gem was written by Pete Gamache with the gracious support of Where, Inc.
