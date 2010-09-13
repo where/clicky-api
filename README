@@ -1,0 +1,5 @@
+Clicky-api is a Ruby Gem which interfaces with version 4 of the Clicky web 
+analytics API, documented at http://getclicky.com/help/api.
+
+
+This gem was written by Pete Gamache with the gracious support of Where, Inc.
