@@ -28,5 +28,5 @@ ClickyAPI.stats(params={})
   of the response.
 
 
-
 This gem was written by Pete Gamache with the gracious support of Where, Inc.
+It is Copyright (c) 2010 Where, Inc. and is released under the MIT License.
