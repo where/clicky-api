@@ -12,4 +12,6 @@ Gem::Specification.new do |s|
     "lib/clicky-api.rb", "test/test-suite.rb"
   ]
   s.test_file = 'test/test-suite.rb'
+  
+  s.add_dependency('httparty')
 end
