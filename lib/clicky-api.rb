@@ -27,10 +27,17 @@ class ClickyAPI
   ## load_config_file! is called from the Rails initializer.  This code might
   ## need to be re-run if you're using the "development" environment, and
   ## the file gets reloaded.  Gross.
-  def self.load_config_file!(file="#{Rails.root}/config/clicky-api.yml")
+  def self.load_config_file!(file=nil)
     @@set_params = {}
+    if file.nil?
+      if defined?(Rails)
+        file = "#{Rails.root}/config/clicky-api.yml"
+      else
+        return nil ## perhaps this should throw here?
+      end
+    end
     config = YAML.load_file(file) || {}
-    ClickyAPI.set!(config)
+    ClickyAPI.set_params!(config)
   end
   
   ## the 'set_params!' method is used to set params persistently, class-wide
@@ -40,8 +47,9 @@ class ClickyAPI
   end
   
   ## get_params returns the hash of params set by #set_params!
-  def get_params
-    {}.merge(@@set_params)
+  ## using Hash#merge to prevent shared structure
+  def self.get_params
+    {}.merge(@@set_params||{})
   end
   
   ## the 'stats' method is used to obtain results.  I wanted to call it
